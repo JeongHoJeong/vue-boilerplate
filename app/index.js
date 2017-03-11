@@ -3,7 +3,7 @@ import App from 'App'
 
 const app = new Vue({
   el: '#app',
-  template: '<App></App>',
+  template: '<App />',
   components: {
     App: App
   }

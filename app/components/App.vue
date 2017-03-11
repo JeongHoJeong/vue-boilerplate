@@ -6,7 +6,7 @@
 export default {
   data () {
     return {
-      greeting: 'Hello, world!'
+      greeting: 'HELLO, VUE!'
     }
   }
 }
@@ -14,6 +14,7 @@ export default {
 
 <style scoped>
 p {
-  color: blue
+  color: lightyellow;
+  font-size: 4em;
 }
 </style>

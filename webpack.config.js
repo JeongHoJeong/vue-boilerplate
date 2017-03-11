@@ -1,29 +1,55 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-  entry: './app',
+  entry: path.resolve(__dirname, 'app/index.js'),
   output: {
-    path: path.resolve('dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  resolve: {
+    modules: [
+      path.resolve(__dirname, 'app/components'),
+      path.resolve(__dirname, 'app'),
+      'node_modules'
+    ],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    },
+    extensions: ['.js', '.vue']
+  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015']
+        use: {
+          loader: 'babel-loader'
         }
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        use: {
+          loader: 'vue-loader',
+          options: {
+            loaders: {
+              js: 'babel-loader'
+            }
+          }
+        }
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          use: ['css-loader', 'less-loader']
+        })
       }
     ]
   },
-  resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.common.js'
-    }
-  }
+  plugins: [
+    new ExtractTextPlugin('style.css'),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'app/index.html')
+    })
+  ]
 }

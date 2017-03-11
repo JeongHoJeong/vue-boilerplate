@@ -1,6 +1,6 @@
 # Vue Boilerplate
 
-Simple Vue.js boilerplate with Express server.
+Simple Vue.js boilerplate.
 
 ## How to run
 Prepare Webpack first.
@@ -8,11 +8,10 @@ Prepare Webpack first.
 npm install -g webpack
 ```
 
-Then install dependencies and start server.
+Then install dependencies and compile.
 ```
 npm install
 webpack
-node server/server.js
 ```
 
-Now visit localhost:3000 with your browser to check if it's running.
+Now run `http-server` on `dist` directory and check the page!

@@ -13,7 +13,7 @@ export default {
   components: {
     Message,
   },
-  computed: mapState([ 
+  computed: mapState([
     'count',
   ]),
 }

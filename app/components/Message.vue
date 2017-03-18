@@ -1,13 +1,11 @@
 <template>
-  <p>{{ greeting }}</p>
+  <p>{{ message }}</p>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      greeting: 'HELLO, VUE!'
-    }
+  props: {
+    message: String
   }
 }
 </script>

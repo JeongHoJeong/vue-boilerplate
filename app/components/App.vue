@@ -1,5 +1,5 @@
 <template>
-  <Message />
+  <Message :message="'HELLO, VUE!'" />
 </template>
 
 <script>
@@ -7,7 +7,7 @@ import Message from 'Message'
 
 export default {
   components: {
-    Message: Message
+    Message
   }
 }
 </script>

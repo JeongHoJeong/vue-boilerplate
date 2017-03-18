@@ -1,15 +1,9 @@
 <template>
-  <Message :message="'HELLO, VUE!'" />
+  <router-view></router-view>  
 </template>
 
 <script>
-import Message from 'Message'
-
-export default {
-  components: {
-    Message
-  }
-}
+export default {}
 </script>
 
 <style scoped>

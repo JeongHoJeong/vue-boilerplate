@@ -12,9 +12,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="sass">
 p {
   color: lightyellow;
   font-size: 4em;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 </style>

@@ -1,20 +1,16 @@
 <template>
-  <p>{{ greeting }}</p>
+  <Message />
 </template>
 
 <script>
+import Message from 'Message'
+
 export default {
-  data () {
-    return {
-      greeting: 'HELLO, VUE!'
-    }
+  components: {
+    Message: Message
   }
 }
 </script>
 
 <style scoped>
-p {
-  color: lightyellow;
-  font-size: 4em;
-}
 </style>

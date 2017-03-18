@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-  entry: path.resolve(__dirname, 'app/index.js'),
+  entry: path.resolve(__dirname, 'app/index.ts'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -17,10 +17,19 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     },
-    extensions: ['.js', '.vue']
+    extensions: ['.js', '.vue', '.ts']
   },
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        use: {
+          loader: 'ts-loader',
+          options: {
+            appendTsSuffixTo: [/\.vue$/]
+          }
+        }
+      },
       {
         test: /\.js$/,
         use: {
@@ -33,7 +42,7 @@ module.exports = {
           loader: 'vue-loader',
           options: {
             loaders: {
-              js: 'babel-loader'
+              js: 'ts-loader'
             }
           }
         }

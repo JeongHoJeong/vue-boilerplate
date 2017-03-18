@@ -48,7 +48,7 @@ module.exports = {
         }
       },
       {
-        test: /\.less$/,
+        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           use: [
             'css-loader?importLoaders=1',
@@ -63,7 +63,7 @@ module.exports = {
                 }
               }
             },
-            'less-loader'
+            'sass-loader'
           ]
         })
       }

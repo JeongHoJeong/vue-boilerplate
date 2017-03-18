@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import 'style.less'
+import 'style.scss'
 
 declare var require: any
 const App = require('App')

@@ -1,10 +1,12 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
+import Vuex from "vuex"
 
-import About from "About"
 import App from "App"
+import Counter from "Counter"
 import Main from "Main"
 
+import store from "store"
 import "style.scss"
 
 Vue.use(VueRouter)
@@ -20,8 +22,8 @@ const router = new VueRouter({
           component: Main,
         },
         {
-          path: "about",
-          component: About,
+          path: "counter",
+          component: Counter,
         },
       ],
     },
@@ -32,4 +34,5 @@ const app = new Vue({
   el: "#app",
   template: "<router-view></router-view>",
   router,
+  store,
 })

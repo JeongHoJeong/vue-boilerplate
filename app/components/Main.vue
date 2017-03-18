@@ -1,5 +1,5 @@
 <template>
-  <Message :message="'HELLO, VUE!'" :link="'about'" />
+  <Message :message="'HELLO, VUE!'" :link="'counter'" />
 </template>
 
 <script>

@@ -1,13 +1,11 @@
-import Vue from 'vue'
-import 'style.scss'
-
-declare var require: any
-const App = require('App')
+import App from "App"
+import "style.scss"
+import Vue from "vue"
 
 const app = new Vue({
-  el: '#app',
-  template: '<App />',
+  el: "#app",
+  template: "<App />",
   components: {
-    App: App
-  }
+    App,
+  },
 })

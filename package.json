@@ -2,9 +2,10 @@
   "name": "vue-boilerplate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/electron/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "electron": "electron ."
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "babel-loader": "^6.3.1",
     "babel-preset-es2015": "^6.22.0",
     "css-loader": "^0.26.1",
+    "electron": "^1.6.2",
     "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.28.0",
     "node-sass": "^4.5.0",

@@ -1,78 +1,63 @@
 const path = require('path')
+const config = require(path.resolve(__dirname, 'webpack.base.config.js'))
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const webpack = require('webpack')
 
-module.exports = {
-  entry: path.resolve(__dirname, 'app/index.ts'),
-  output: {
-    path: path.resolve(__dirname, 'dist'),
+const plugins = config.plugins || []
+
+if (!process.env.TARGET || process.env.TARGET === 'web') {
+  console.log("Build target: Web")
+
+  config.entry = path.resolve(__dirname, 'app/index.ts')
+
+  config.output = {
+    path: path.resolve(__dirname, 'dist/web'),
     filename: 'bundle.js'
-  },
-  resolve: {
-    modules: [
-      path.resolve(__dirname, 'app/components'),
-      path.resolve(__dirname, 'app'),
-      'node_modules'
-    ],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
-    extensions: ['.js', '.vue', '.ts']
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            appendTsSuffixTo: [/\.vue$/]
-          }
-        }
-      },
-      {
-        test: /\.js$/,
-        use: {
-          loader: 'babel-loader'
-        }
-      },
-      {
-        test: /\.vue$/,
-        use: {
-          loader: 'vue-loader',
-          options: {
-            loaders: {
-              js: 'ts-loader'
-            }
-          }
-        }
-      },
-      {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            'css-loader?importLoaders=1',
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: function () {
-                  return [
-                    require('precss'),
-                    require('autoprefixer')
-                  ]
-                }
-              }
-            },
-            'sass-loader'
-          ]
-        })
-      }
-    ]
-  },
-  plugins: [
-    new ExtractTextPlugin('style.css'),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'app/index.html')
-    })
-  ]
+  }
+
+  plugins.push(new HtmlWebpackPlugin({
+    template: path.resolve(__dirname, 'app/index.html')
+  }))
+} else if (process.env.TARGET === 'electron') {
+  console.log("Build target: Electron")
+
+  config.entry = {
+    main: path.resolve(__dirname, 'app/electron.js'),
+    bundle: path.resolve(__dirname, 'app/index.ts')
+  }
+
+  config.output = {
+    path: path.resolve(__dirname, 'dist/electron'),
+    filename: '[name].js'
+  }
+
+  plugins.push(new HtmlWebpackPlugin({
+    template: path.resolve(__dirname, 'app/index.electron.html'),
+    inject: false
+  }))
+
+  config.module.noParse = /electron\.js$/
+} else {
+  throw new Error("Invalid build target.")
 }
+
+config.plugins = plugins
+
+if (process.env.PROD || process.env.PRODUCTION) {
+  console.log("Build mode: Production")
+
+  config.plugins = config.plugins || []
+
+  config.plugins.push(new webpack.DefinePlugin({
+    PRODUCTION: JSON.stringify(true),
+    'process.env': {
+      NODE_ENV: JSON.stringify('production')
+    }
+  }))
+  config.plugins.push(new UglifyJsPlugin())
+} else {
+  console.log("Build mode: Development")
+}
+
+module.exports = config

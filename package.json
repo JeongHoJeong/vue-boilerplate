@@ -4,11 +4,11 @@
   "description": "Vue boilerplate",
   "main": "dist/electron/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "web": "http-server ./dist/web",
-    "electron": "electron .",
     "build": "webpack",
-    "watch": "webpack --watch"
+    "electron": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "web": "http-server ./dist/web"
   },
   "author": "Jeongho Jeong",
   "license": "MIT",

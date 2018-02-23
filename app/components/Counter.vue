@@ -5,8 +5,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-
 import { mapState } from 'vuex'
+
 import Message from './Message.vue'
 
 @Component({

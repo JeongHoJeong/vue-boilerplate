@@ -17,6 +17,15 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+        options: {
+          tsConfigFile: path.resolve(__dirname, 'tslint.json'),
+          emitErrors: true,
+        },
+      },
+      {
+        test: /\.ts$/,
         use: {
           loader: 'ts-loader',
           options: {
@@ -36,7 +45,7 @@ module.exports = {
           loader: 'vue-loader',
           options: {
             loaders: {
-              ts: 'ts-loader!tslint-loader'
+              ts: 'ts-loader!tslint-loader?emitErrors=true'
             }
           }
         }

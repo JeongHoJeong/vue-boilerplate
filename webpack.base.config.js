@@ -6,7 +6,7 @@ module.exports = {
   resolve: {
     modules: [
       path.resolve(__dirname, 'app'),
-      'node_modules'
+      'node_modules',
     ],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'

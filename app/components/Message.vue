@@ -16,12 +16,12 @@ export default class Message extends Vue {
   private link!: string
 
   private onClick() {
-      this.$router.push(this.link)
-    }
+    this.$router.push(this.link)
   }
+}
 </script>
 
-<style scoped lang="sass">
+<style scoped lang="scss">
 p {
   color: lightyellow;
   font-size: 4em;

@@ -2,21 +2,26 @@
   <p @click="onClick">{{ message }}</p>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+@Component({
   props: {
     message: String,
-    link: String
+    link: String,
   },
-  methods: {
-    onClick: function () {
-      this.$router.push(this.link)
-    }
+})
+export default class Message extends Vue {
+  private link!: string
+
+  private onClick() {
+    this.$router.push(this.link)
   }
 }
 </script>
 
-<style scoped lang="sass">
+<style scoped lang="scss">
 p {
   color: lightyellow;
   font-size: 4em;

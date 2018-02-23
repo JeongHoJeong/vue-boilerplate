@@ -3,15 +3,22 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "target": "es5",
-    "jsx": "react",
     "allowJs": true,
+    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "lib": [
       "dom",
       "es5",
       "es2015.promise"
     ],
+    "strict": true,
     "module": "es2015",
+    "rootDir": "app",
+    "baseUrl": "./",
     "moduleResolution": "node"
-  }
+  },
+  "include": [
+    "app/**/*.ts",
+    "app/**/*.vue"
+  ]
 }

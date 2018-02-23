@@ -1,24 +1,24 @@
-import Vue from "vue"
-import VueRouter from "vue-router"
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-import App from "App"
-import Counter from "Counter"
-import Main from "Main"
+import App from './components/App.vue'
+import Counter from './components/Counter.vue'
+import Main from './components/Main.vue'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
     {
-      path: "/",
+      path: '/',
       component: App,
       children: [
         {
-          path: "",
+          path: '',
           component: Main,
         },
         {
-          path: "counter",
+          path: 'counter',
           component: Counter,
         },
       ],

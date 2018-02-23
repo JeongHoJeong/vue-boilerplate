@@ -5,9 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   resolve: {
     modules: [
-      path.resolve(__dirname, 'app/components'),
       path.resolve(__dirname, 'app'),
-      'node_modules'
+      'node_modules',
     ],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
@@ -37,7 +36,7 @@ module.exports = {
           loader: 'vue-loader',
           options: {
             loaders: {
-              js: 'ts-loader'
+              ts: 'ts-loader!tslint-loader'
             }
           }
         }

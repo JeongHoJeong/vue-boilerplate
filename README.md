@@ -9,28 +9,28 @@ Vue.js boilerplate with:
 
 ## How to build
 ```bash
-npm install
+yarn install
 
 # web development build
-npm run build
+yarn run build
 
 # web production build
-PROD=1 npm run build
+PROD=1 yarn run build
 
 # Electron dev build
-TARGET=electron npm run build
+TARGET=electron yarn run build
 
 # Electron prod build
-TARGET=electron PROD=1 npm run build
+TARGET=electron PROD=1 yarn run build
 
 # same as build but with --watch flag
-npm run watch
+yarn run watch
 
 # run webapp
-npm run web
+yarn run web
 
 # run Electron app
-npm run electron
+yarn run electron
 ```
 
 After build, check `dist` directory and you can find the build result files.

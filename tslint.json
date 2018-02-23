@@ -1,6 +1,9 @@
 {
   "extends": "tslint:recommended",
   "rules": {
-    "semicolon": [true, "never"]
+    "semicolon": [true, "never"],
+    "quotemark": [true, "single"],
+    "object-literal-sort-keys": false,
+    "no-consecutive-blank-lines": false
   }
 }

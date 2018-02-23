@@ -20,7 +20,8 @@ module.exports = {
         enforce: 'pre',
         loader: 'tslint-loader',
         options: {
-          tsConfigFile: path.resolve(__dirname, 'tslint.json'),
+          configFile: path.resolve(__dirname, 'tslint.json'),
+          tsConfigFile: path.resolve(__dirname, 'tsconfig.json'),
           emitErrors: true,
         },
       },

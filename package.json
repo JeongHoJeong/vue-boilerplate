@@ -11,7 +11,7 @@
     "watch": "webpack --watch"
   },
   "author": "Jeongho Jeong",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.7.7",
     "babel": "^6.23.0",

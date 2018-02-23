@@ -7,7 +7,7 @@ const webpack = require('webpack')
 const plugins = config.plugins || []
 
 if (!process.env.TARGET || process.env.TARGET === 'web') {
-  console.log("Build target: Web")
+  console.log('Build target: Web')
 
   config.entry = path.resolve(__dirname, 'app/index.ts')
 
@@ -20,7 +20,7 @@ if (!process.env.TARGET || process.env.TARGET === 'web') {
     template: path.resolve(__dirname, 'app/index.html')
   }))
 } else if (process.env.TARGET === 'electron') {
-  console.log("Build target: Electron")
+  console.log('Build target: Electron')
 
   config.entry = {
     main: path.resolve(__dirname, 'app/electron.js'),
@@ -39,13 +39,13 @@ if (!process.env.TARGET || process.env.TARGET === 'web') {
 
   config.module.noParse = /electron\.js$/
 } else {
-  throw new Error("Invalid build target.")
+  throw new Error('Invalid build target.')
 }
 
 config.plugins = plugins
 
 if (process.env.PROD || process.env.PRODUCTION) {
-  console.log("Build mode: Production")
+  console.log('Build mode: Production')
 
   config.plugins = config.plugins || []
 
@@ -57,7 +57,7 @@ if (process.env.PROD || process.env.PRODUCTION) {
   }))
   config.plugins.push(new UglifyJsPlugin())
 } else {
-  console.log("Build mode: Development")
+  console.log('Build mode: Development')
 }
 
 module.exports = config

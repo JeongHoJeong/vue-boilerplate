@@ -17,6 +17,15 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+        options: {
+          tsConfigFile: path.resolve(__dirname, 'tslint.json'),
+          emitErrors: true,
+        },
+      },
+      {
+        test: /\.ts$/,
         use: {
           loader: 'ts-loader',
           options: {

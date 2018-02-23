@@ -5,15 +5,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import { Prop } from 'vue-property-decorator'
 
-@Component({
-  props: {
-    message: String,
-    link: String,
-  },
-})
+@Component
 export default class Message extends Vue {
-  private link!: string
+  @Prop() private link: string
+  @Prop() private message: string
 
   private onClick() {
     this.$router.push(this.link)

@@ -2,13 +2,18 @@
   <Message :message="'HELLO, VUE!'" :link="'counter'" />
 </template>
 
-<script>
-import Message from 'Message'
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
-export default {
+import Message from './Message.vue'
+
+@Component({
   components: {
-    Message
-  }
+    Message,
+  },
+})
+export default class Main extends Vue {
 }
 </script>
 

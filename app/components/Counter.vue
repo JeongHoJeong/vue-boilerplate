@@ -2,20 +2,27 @@
   <Message :message="count.toString()" :link="'/'" />
 </template>
 
-<script>
-import { mapState } from 'vuex'
-import Message from 'Message'
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
-export default {
-  mounted: function () {
-    this.$store.commit('increment')
-  },
+import { mapState } from 'vuex'
+import Message from './Message.vue'
+
+@Component({
   components: {
     Message,
   },
-  computed: mapState([
-    'count',
-  ]),
+  computed: {
+    ...mapState([
+      'count',
+    ]),
+  },
+})
+export default class Counter extends Vue {
+  private mounted() {
+    this.$store.commit('increment')
+  }
 }
 </script>
 

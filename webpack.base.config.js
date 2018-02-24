@@ -16,9 +16,9 @@ module.exports = {
       'node_modules',
     ],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
     },
-    extensions: ['.js', '.vue', '.ts']
+    extensions: ['.js', '.vue', '.ts'],
   },
   module: {
     rules: [
@@ -27,21 +27,21 @@ module.exports = {
         enforce: 'pre',
         loader: 'tslint-loader',
         options: tsLintLoaderOptions,
-        },
+      },
       {
         test: /\.ts$/,
         use: {
           loader: 'ts-loader',
           options: {
-            appendTsSuffixTo: [/\.vue$/]
-          }
-        }
+            appendTsSuffixTo: [/\.vue$/],
+          },
+        },
       },
       {
         test: /\.js$/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.vue$/,
@@ -65,21 +65,21 @@ module.exports = {
             {
               loader: 'postcss-loader',
               options: {
-                plugins: function () {
+                plugins: function() {
                   return [
                     require('precss'),
-                    require('autoprefixer')
+                    require('autoprefixer'),
                   ]
-                }
-              }
+                },
+              },
             },
-            'sass-loader'
-          ]
-        })
-      }
-    ]
+            'sass-loader',
+          ],
+        }),
+      },
+    ],
   },
   plugins: [
     new ExtractTextPlugin('style.css'),
-  ]
+  ],
 }

@@ -13,28 +13,28 @@ if (!process.env.TARGET || process.env.TARGET === 'web') {
 
   config.output = {
     path: path.resolve(__dirname, 'dist/web'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   }
 
   plugins.push(new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, 'app/index.html')
+    template: path.resolve(__dirname, 'app/index.html'),
   }))
 } else if (process.env.TARGET === 'electron') {
   console.log('Build target: Electron')
 
   config.entry = {
     main: path.resolve(__dirname, 'app/electron.js'),
-    bundle: path.resolve(__dirname, 'app/index.ts')
+    bundle: path.resolve(__dirname, 'app/index.ts'),
   }
 
   config.output = {
     path: path.resolve(__dirname, 'dist/electron'),
-    filename: '[name].js'
+    filename: '[name].js',
   }
 
   plugins.push(new HtmlWebpackPlugin({
     template: path.resolve(__dirname, 'app/index.electron.html'),
-    inject: false
+    inject: false,
   }))
 
   config.module.noParse = /electron\.js$/
@@ -52,8 +52,8 @@ if (process.env.PROD || process.env.PRODUCTION) {
   config.plugins.push(new webpack.DefinePlugin({
     PRODUCTION: JSON.stringify(true),
     'process.env': {
-      NODE_ENV: JSON.stringify('production')
-    }
+      NODE_ENV: JSON.stringify('production'),
+    },
   }))
   config.plugins.push(new UglifyJsPlugin())
 } else {

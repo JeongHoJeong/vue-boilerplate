@@ -2,6 +2,13 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const tsLintLoaderOptions = {
+  configFile: path.resolve(__dirname, 'tslint.json'),
+  tsConfigFile: path.resolve(__dirname, 'tsconfig.json'),
+  emitErrors: true,
+  failOnHint: true,
+}
+
 module.exports = {
   resolve: {
     modules: [
@@ -19,12 +26,8 @@ module.exports = {
         test: /\.ts$/,
         enforce: 'pre',
         loader: 'tslint-loader',
-        options: {
-          configFile: path.resolve(__dirname, 'tslint.json'),
-          tsConfigFile: path.resolve(__dirname, 'tsconfig.json'),
-          emitErrors: true,
+        options: tsLintLoaderOptions,
         },
-      },
       {
         test: /\.ts$/,
         use: {
@@ -46,10 +49,13 @@ module.exports = {
           loader: 'vue-loader',
           options: {
             loaders: {
-              ts: 'ts-loader!tslint-loader?emitErrors=true'
-            }
-          }
-        }
+              ts: [
+                { loader: 'ts-loader' },
+                { loader: 'tslint-loader', options: tsLintLoaderOptions },
+              ],
+            },
+          },
+        },
       },
       {
         test: /\.scss$/,

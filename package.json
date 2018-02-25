@@ -63,7 +63,9 @@
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "setupFiles": ["<rootDir>/app/setupJest.ts"],
+    "setupFiles": [
+      "<rootDir>/app/setupJest.ts"
+    ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
   }
 }

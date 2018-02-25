@@ -15,13 +15,13 @@ yarn install
 yarn run build
 
 # web production build
-PROD=1 yarn run build
+yarn run build --env.production
 
 # Electron dev build
-TARGET=electron yarn run build
+yarn run build --env.target=electron
 
 # Electron prod build
-TARGET=electron PROD=1 yarn run build
+yarn run build --env.target=electron --env.production
 
 # same as build but with --watch flag
 yarn run watch

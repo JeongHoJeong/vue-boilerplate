@@ -7,15 +7,21 @@
     "build": "webpack",
     "electron": "electron .",
     "lint": "tslint --project tsconfig.json",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "watch": "webpack --watch",
     "web": "http-server ./dist/web"
   },
   "author": "Jeongho Jeong",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^22.1.3",
+    "@vue/test-utils": "^1.0.0-beta.12",
     "http-server": "^0.11.1",
-    "tslint": "^5.9.1"
+    "jest": "^22.4.2",
+    "ts-jest": "^22.0.4",
+    "tslint": "^5.9.1",
+    "vue-jest": "^2.1.0",
+    "vue-server-renderer": "^2.5.13"
   },
   "dependencies": {
     "autoprefixer": "^8.0.0",
@@ -44,5 +50,19 @@
     "vue-template-compiler": "^2.5.13",
     "vuex": "^3.0.1",
     "webpack": "^3.11.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "setupFiles": ["<rootDir>/app/setupJest.ts"],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
   }
 }

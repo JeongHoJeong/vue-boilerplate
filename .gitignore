@@ -1,4 +1,5 @@
-node_modules
-dist
 **/*.swp
+coverage
+dist
+node_modules
 npm-debug.log

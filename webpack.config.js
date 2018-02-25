@@ -1,3 +1,4 @@
+const chalk = require('chalk')
 const path = require('path')
 
 const webpack = require('webpack')
@@ -63,6 +64,10 @@ function configBuilder(env = {}) {
   } else {
     buildOptions.mode = 'Development'
   }
+
+  console.log(chalk`{bold Build information}`)
+  console.log(chalk`{green .. Target: }{bold ${buildOptions.target}}`)
+  console.log(chalk`{green .. Mode:   }{bold ${buildOptions.mode}}`)
 
   return config
 }

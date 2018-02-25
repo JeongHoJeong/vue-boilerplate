@@ -1,11 +1,11 @@
 # Vue Boilerplate
 
 Vue.js boilerplate with:
-- Vuex
-- vue-router
-- Sass
-- TypeScript
-- Electron
+- [Vuex](https://github.com/vuejs/vuex/)
+- [vue-router](https://github.com/vuejs/vue-router)
+- [Sass](https://sass-lang.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Electron](https://electronjs.org/)
 
 ## How to build
 ```bash
@@ -15,13 +15,13 @@ yarn install
 yarn run build
 
 # web production build
-PROD=1 yarn run build
+yarn run build --env.production
 
 # Electron dev build
-TARGET=electron yarn run build
+yarn run build --env.target=electron
 
 # Electron prod build
-TARGET=electron PROD=1 yarn run build
+yarn run build --env.target=electron --env.production
 
 # same as build but with --watch flag
 yarn run watch

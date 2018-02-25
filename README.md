@@ -1,11 +1,11 @@
 # Vue Boilerplate
 
 Vue.js boilerplate with:
-- Vuex
-- vue-router
-- Sass
-- TypeScript
-- Electron
+- [Vuex](https://github.com/vuejs/vuex/)
+- [vue-router](https://github.com/vuejs/vue-router)
+- [Sass](https://sass-lang.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Electron](https://electronjs.org/)
 
 ## How to build
 ```bash

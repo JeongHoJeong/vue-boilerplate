@@ -1,63 +1,70 @@
 const path = require('path')
-const config = require(path.resolve(__dirname, 'webpack.base.config.js'))
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
 const webpack = require('webpack')
 
-const plugins = config.plugins || []
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-if (!process.env.TARGET || process.env.TARGET === 'web') {
-  console.log('Build target: Web')
+function configBuilder(env = {}) {
+  const config = require(path.resolve(__dirname, 'webpack.base.config.js'))
+  const plugins = config.plugins || []
+  const buildOptions = {}
 
-  config.entry = path.resolve(__dirname, 'app/index.ts')
+  if (!env.target || env.target === 'web') {
+    buildOptions.target = 'Web'
 
-  config.output = {
-    path: path.resolve(__dirname, 'dist/web'),
-    filename: 'bundle.js',
+    config.entry = path.resolve(__dirname, 'app/index.ts')
+
+    config.output = {
+      path: path.resolve(__dirname, 'dist/web'),
+      filename: 'bundle.js',
+    }
+
+    plugins.push(new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'app/index.html'),
+    }))
+  } else if (env.target === 'electron') {
+    buildOptions.target = 'Electron'
+
+    config.entry = {
+      main: path.resolve(__dirname, 'app/electron.js'),
+      bundle: path.resolve(__dirname, 'app/index.ts'),
+    }
+
+    config.output = {
+      path: path.resolve(__dirname, 'dist/electron'),
+      filename: '[name].js',
+    }
+
+    plugins.push(new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'app/index.electron.html'),
+      inject: false,
+    }))
+
+    config.module.noParse = /electron\.js$/
+  } else {
+    throw new Error('Invalid build target.')
   }
 
-  plugins.push(new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, 'app/index.html'),
-  }))
-} else if (process.env.TARGET === 'electron') {
-  console.log('Build target: Electron')
+  config.plugins = plugins
 
-  config.entry = {
-    main: path.resolve(__dirname, 'app/electron.js'),
-    bundle: path.resolve(__dirname, 'app/index.ts'),
+  if (env.production) {
+    buildOptions.mode = 'Production'
+
+    config.plugins = config.plugins || []
+
+    config.plugins.push(new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true),
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }))
+    config.plugins.push(new UglifyJsPlugin())
+  } else {
+    buildOptions.mode = 'Development'
   }
 
-  config.output = {
-    path: path.resolve(__dirname, 'dist/electron'),
-    filename: '[name].js',
-  }
-
-  plugins.push(new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, 'app/index.electron.html'),
-    inject: false,
-  }))
-
-  config.module.noParse = /electron\.js$/
-} else {
-  throw new Error('Invalid build target.')
+  return config
 }
 
-config.plugins = plugins
-
-if (process.env.PROD || process.env.PRODUCTION) {
-  console.log('Build mode: Production')
-
-  config.plugins = config.plugins || []
-
-  config.plugins.push(new webpack.DefinePlugin({
-    PRODUCTION: JSON.stringify(true),
-    'process.env': {
-      NODE_ENV: JSON.stringify('production'),
-    },
-  }))
-  config.plugins.push(new UglifyJsPlugin())
-} else {
-  console.log('Build mode: Development')
-}
-
-module.exports = config
+module.exports = configBuilder

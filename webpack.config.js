@@ -4,10 +4,11 @@ const path = require('path')
 const webpack = require('webpack')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-function configBuilder(env = {}) {
-  const config = require(path.resolve(__dirname, 'webpack.base.config.js'))
+function configBuilder(env = {}, argv) {
+  const config = require(
+    path.resolve(__dirname, 'webpack.base.config.js')
+  )(env, argv)
   const plugins = config.plugins || []
   const buildOptions = {}
 
@@ -49,18 +50,8 @@ function configBuilder(env = {}) {
 
   config.plugins = plugins
 
-  if (env.production) {
+  if (argv.mode === 'production') {
     buildOptions.mode = 'Production'
-
-    config.plugins = config.plugins || []
-
-    config.plugins.push(new webpack.DefinePlugin({
-      PRODUCTION: JSON.stringify(true),
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }))
-    config.plugins.push(new UglifyJsPlugin())
   } else {
     buildOptions.mode = 'Development'
   }

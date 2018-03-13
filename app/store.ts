@@ -11,6 +11,9 @@ export const mutations = {
   increment(state: IState) {
     state.count++
   },
+  decrement(state: IState) {
+    state.count--
+  },
 }
 
 const defaultState: IState = {

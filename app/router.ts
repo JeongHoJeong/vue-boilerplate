@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import AboutPage from './components/AboutPage.vue'
 import App from './components/App.vue'
-import Counter from './components/Counter.vue'
+import CounterPage from './components/CounterPage.vue'
 import Main from './components/Main.vue'
 
 Vue.use(VueRouter)
@@ -16,10 +17,16 @@ const router = new VueRouter({
         {
           path: '',
           component: Main,
-        },
-        {
-          path: 'counter',
-          component: Counter,
+          children: [
+            {
+              path: '',
+              component: CounterPage,
+            },
+            {
+              path: 'about',
+              component: AboutPage,
+            },
+          ],
         },
       ],
     },

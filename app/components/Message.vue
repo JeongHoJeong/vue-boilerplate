@@ -1,5 +1,5 @@
 <template>
-  <p @click="onClick">{{ message }}</p>
+  <p class="message">{{ message }}</p>
 </template>
 
 <script lang="ts">
@@ -9,18 +9,17 @@ import { Prop } from 'vue-property-decorator'
 
 @Component
 export default class Message extends Vue {
-  @Prop() private link: string
   @Prop() private message: string
-
-  private onClick() {
-    this.$router.push(this.link)
-  }
 }
 </script>
 
 <style scoped lang="scss">
+@import '../variables.scss';
+
 p {
-  color: lightyellow;
+  margin: 0;
+
+  color: $theme_main;
   font-size: 4em;
   cursor: pointer;
 

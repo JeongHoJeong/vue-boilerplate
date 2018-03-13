@@ -1,5 +1,7 @@
+@import './variables.scss';
+
 html, body {
-  background-color: lightcoral;
+  background-color: $theme_bg;
 }
 
 body {

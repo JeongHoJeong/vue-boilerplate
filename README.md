@@ -6,28 +6,23 @@ Vue.js boilerplate with:
 - [Sass](https://sass-lang.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Electron](https://electronjs.org/)
+- [Jest](https://facebook.github.io/jest/)
 
 ## How to build
 ```bash
 yarn install
 
-# web development build
+# web production build
 yarn run build
 
-# web production build
-yarn run build --env.production
-
-# Electron dev build
+# Electron production build
 yarn run build --env.target=electron
 
-# Electron prod build
-yarn run build --env.target=electron --env.production
-
-# same as build but with --watch flag
+# development build with --watch flag
 yarn run watch
 
-# run webapp
-yarn run web
+# run webapp with webpack-dev-server
+yarn run server
 
 # run Electron app
 yarn run electron
